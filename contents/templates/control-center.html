@@ -39,7 +39,7 @@
                         </td>
                         <td>{{ forloop.counter }}</td>
                         {% for field, value in instance.fields.items %}
-                            <td> {{ value | truncatewords:8}}</td>
+                            <td> {{ value | truncatewords:3}}</td>
 
                         {% endfor %}
                     </tr>
