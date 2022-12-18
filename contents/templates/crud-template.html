@@ -1,0 +1,15 @@
+{% extends 'navbar.html' %}
+{% load static %}
+
+{% block content %}
+    <footer class="footer static-bottom footer-dark footer-custom-class" data-midnight="white"><div class="container">
+        <div class="footer-wrapper mx-auto text-lef">
+            <form  method="POST" enctype='multipart/form-data' class="subscribe mb-3 animated" data-animation="fadeInUpShorter" data-animation-delay="0.3s" accept-charset="utf-8">
+                {% csrf_token %}
+                {{ form.as_ul}}
+                <button type="submit"> Submit</button>
+            </form>
+        </div>
+    </div>
+    </footer>
+{% endblock %}

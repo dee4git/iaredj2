@@ -1,0 +1,39 @@
+{% extends 'navbar.html' %}
+{% load static %}
+<!-- Latest compiled and minified CSS -->
+{% block content %}
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            margin: auto;
+            text-align: center;
+            font-family: arial;
+            background: #5135a4;
+            margin: 20px;
+            border-radius: 50px;
+        }
+
+
+    </style>
+    <footer class="footer static-bottom footer-dark footer-custom-class" data-midnight="white"><div class="container">
+        <div class="footer-wrapper mx-auto text-center">
+            <div class="footer-title mb-5 animated" data-animation="fadeInUpShorter" data-animation-delay="0.2s">{{ key }} Products</div>
+            <div class="container-fluid">
+                <div class="row" style="
+            justify-content: center;
+                flex-wrap: wrap;
+            display: flex">
+                    {% for i in solutions %}
+                        <div class="card">
+                            <img src="{{ i.cover.url }}" alt="Denim Jeans" style="width:100%; padding: 20px">
+                            <h1>{{ i.name }}</h1>
+                            <p>{{ i.description }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    </footer>
+{% endblock %}

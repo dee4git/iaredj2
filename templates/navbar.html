@@ -66,14 +66,15 @@
     <div class="loader-section section-left"></div>
     <div class="loader-section section-right"></div>
 </div>
-<!--/ Preloader --><nav class="vertical-social">
-    <ul>
-        <li><a href="#"><i class="fa fa-telegram" aria-hidden="true"></i></a></li>
-        <li><a href="#"><i class="fa fa-medium" aria-hidden="true"></i></a></li>
-        <li><a href="#"> <i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-        <li><a href="#"><i class="fa fa-github" aria-hidden="true"></i></a></li>
-    </ul>
-</nav>
+<!--/ Preloader -->
+{#<nav class="vertical-social">#}
+{#    <ul>#}
+{#        <li><a href="#"><i class="fa fa-telegram" aria-hidden="true"></i></a></li>#}
+{#        <li><a href="#"><i class="fa fa-medium" aria-hidden="true"></i></a></li>#}
+{#        <li><a href="#"> <i class="fa fa-twitter" aria-hidden="true"></i></a></li>#}
+{#        <li><a href="#"><i class="fa fa-github" aria-hidden="true"></i></a></li>#}
+{#    </ul>#}
+{#</nav>#}
 <!-- /////////////////////////////////// HEADER /////////////////////////////////////-->
 
 <!-- Header Start-->
@@ -87,6 +88,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div id="navigation" class="navbar-nav ml-auto">
                 <ul class="navbar-nav mt-1">
+
                     <li class="nav-item animated" data-animation="fadeInDown" data-animation-delay="1.1s">
                         <a class="nav-link" href="{% url 'home'%}#about">What is iARE</a>
                     </li>
@@ -96,12 +98,11 @@
                     <li class="nav-item animated" data-animation="fadeInDown" data-animation-delay="1.3s">
                         <a class="nav-link" href="{% url 'home'%}#whitepaper">Whitepaper</a>
                     </li>
-                    <li class="nav-item animated" data-animation="fadeInDown" data-animation-delay="1.4s">
-                        <a class="nav-link" href="{% url 'home'%}#roadmap">Roadmap</a>
-                    </li>
+
                     <li class="nav-item animated" data-animation="fadeInDown" data-animation-delay="1.5s">
                         <a class="nav-link" href="{% url 'home'%}#team">Team</a>
                     </li>
+
                     <li class="dropdown show mr-2 px-2 animated" data-animation="fadeInDown" data-animation-delay="1.6s">
                         <a class="dropdown-toggle white" href="#" role="button" id="more" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
                         <div class="dropdown-menu" aria-labelledby="more">
@@ -111,21 +112,23 @@
 
                         </div>
                     </li>
-                    <li class="dropdown show mr-4 animated" data-animation="fadeInDown" data-animation-delay="1.7s">
-                        <a class="dropdown-toggle white" href="#" role="button" id="language" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flag-icon flag-icon-us"></span> EN</a>
-                        <div class="dropdown-menu" aria-labelledby="language">
-                            <a class="dropdown-item" href="#"><span class="flag-icon flag-icon-de"></span> GN</a>
-                            <a class="dropdown-item" href="#"><span class="flag-icon flag-icon-es"></span> SP</a>
-                            <a class="dropdown-item" href="#"><span class="flag-icon flag-icon-mq"></span> FR</a>
-                        </div>
-                    </li>
                 </ul>
                 <span id="slide-line"></span>
                 <form class="form-inline mt-2 mt-md-0">
-                    {% if user.is_authenticaed %}
-                        <a class="btn btn-sm btn-gradient-orange btn-round btn-glow my-2 my-sm-0 animated" data-animation="fadeInDown" data-animation-delay="1.8s" href="{% url 'login' %}" target="_blank">Log in</a>
+                    {% if user.is_authenticated %}
+                        <a style="margin: 0 10px;!important;" class="btn btn-sm btn-gradient-orange btn-round btn-glow my-2 my-sm-0 animated" data-animation="fadeInDown" data-animation-delay="1.8s" href="{% url 'logout' %}" >Log Out</a>
+                        {% if user.is_superuser %}
+                            <a class="btn btn-sm btn-gradient-orange btn-round btn-glow my-2 my-sm-0 animated" data-animation="fadeInDown" data-animation-delay="1.8s" href="{% url 'control-center' 'Staffs' %}" >Control Center</a>
+                        {% endif %}
                     {% else %}
-                        <a class="btn btn-sm btn-gradient-orange btn-round btn-glow my-2 my-sm-0 animated" data-animation="fadeInDown" data-animation-delay="1.8s" href="{% url 'login' %}" target="_blank">Log Out</a>
+                        <a class="btn btn-sm btn-gradient-orange btn-round btn-glow my-2 my-sm-0 animated" data-animation="fadeInDown" data-animation-delay="1.8s" href="{% url 'login' %}" >Log In</a>
+
+                    {% endif %}
+                    {% if u_staff != 0 %}
+                        <a class="navbar-brand animated" data-animation="fadeInDown" data-animation-delay="1s" href="{% url 'view-profile' u_staff.id %}">
+                            <img style="border-radius: 50%; width: 40px;height: 40px;margin-left: 10px" src="{{ u_staff.photo.url }}" alt="Crypto Logo"/><span class=""/><span class="font-weight-bold"></span></a>
+                    {% elif u_staff == 0 and user.is_authenticated %}
+                        <a style="margin: 10px" class="btn btn-sm btn-gradient-orange btn-round btn-glow my-2 my-sm-0 animated" data-animation="fadeInDown" data-animation-delay="1.8s" href="{% url 'set-profile' %}" >Set Profile</a>
 
                     {% endif %}
                 </form>
@@ -159,7 +162,7 @@
             <li class="animated" data-animation="fadeInUpShorter" data-animation-delay="0.8s"><a href="#" title="GitHub" class="btn btn-outline-github rounded-circle"><i class="ti-github"></i></a></li>
             <li class="animated" data-animation="fadeInUpShorter" data-animation-delay="0.9s"><a href="#" title="Pintrest" class="btn btn-outline-pinterest rounded-circle"><i class="ti-pinterest"></i></a></li>
         </ul>
-        <span class="copyright animated" data-animation="fadeInUpShorter" data-animation-delay="1.0s">Copyright &copy; 2019, Crypto ICO. Template Designed by<a href="http://pixinvent.com/" title="pixinvent"> Pixinvent</a></span>
+        <span class="copyright animated" data-animation="fadeInUpShorter" data-animation-delay="1.0s">Copyright &copy; 2023, iare.network | Developed by<a href="http://github.com/dee4git" title="pixinvent"> Durjoy & Team</a></span>
     </div>
 </div>
 </footer>

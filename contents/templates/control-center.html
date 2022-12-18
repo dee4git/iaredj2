@@ -1,0 +1,86 @@
+{% extends 'navbar.html' %}
+{% load static %}
+
+{% block content %}
+    <footer class="footer static-bottom footer-dark footer-custom-class" data-midnight="white"><div class="container">
+        <div class="footer-wrapper mx-auto text-center">
+            <div class="footer-title mb-5 animated" data-animation="fadeInUpShorter" data-animation-delay="0.2s">Welcome to Control-Center</div>
+            <a style="margin: 0 10px;!important;" class="btn btn-sm btn-gradient-orange btn-round btn-glow my-2 my-sm-0 animated" data-animation="fadeInDown" data-animation-delay="1.8s" href="{% url 'control-center' 'Staffs' %}" >staff</a>
+            <a style="margin: 0 10px;!important;" class="btn btn-sm btn-gradient-orange btn-round btn-glow my-2 my-sm-0 animated" data-animation="fadeInDown" data-animation-delay="1.8s" href="{% url 'control-center' 'White-papers' %}" >White Paper</a>
+            <a style="margin: 0 10px;!important;" class="btn btn-sm btn-gradient-orange btn-round btn-glow my-2 my-sm-0 animated" data-animation="fadeInDown" data-animation-delay="1.8s" href="{% url 'control-center' 'Solution-categories' %}" >Solution Category</a>
+            <a style="margin: 0 10px;!important;" class="btn btn-sm btn-gradient-orange btn-round btn-glow my-2 my-sm-0 animated" data-animation="fadeInDown" data-animation-delay="1.8s" href="{% url 'control-center' 'Solutions' %}" >Solution</a>
+            <br>
+            <br>
+            <div class="footer-title mb-5 animated" data-animation="fadeInUpShorter" data-animation-delay="0.2s">Now Managing {{ key }}
+                <a style="margin: 0 10px;!important;" class="btn btn-sm btn-gradient-orange btn-round btn-glow my-2 my-sm-0 animated" data-animation="fadeInDown" data-animation-delay="1.8s" href="{% url 'create' key %}" >Add New</a>
+
+            </div>
+
+            <table class="table table-hover table-responsive" style="background: rgba(0,0,0,0.22);">
+
+                <thead>
+                <tr>
+                    <th> Action</th>
+                    <th> Action</th>
+                    {% for f in fields %}
+                        <th scope="col">{{ f.name }}</th>
+                    {% endfor %}
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for instance, pk in my_list %}
+                    <tr>
+                        <td>
+                            <a style="text-decoration: #a51dff!important;" href="{% url 'hide' key pk.id %}">Hide</a>
+                        </td>
+                        <td>
+                            <a style="text-decoration: #a51dff" href="{% url 'update' key pk.id %}">Edit</a>
+                        </td>
+                        <td>{{ forloop.counter }}</td>
+                        {% for field, value in instance.fields.items %}
+                            <td> {{ value | truncatewords:8}}</td>
+
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+            <h1> Hidden {{ key }}</h1>
+            <table class="table table-hover table-responsive"style="background: rgba(0,0,0,0.52)">
+
+                <thead>
+                <tr>
+                    <th> Action</th>
+                    <th> Action</th>
+                    {% for f in fields %}
+                        <th scope="col">{{ f.name }}</th>
+                    {% endfor %}
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for instance, pk in hidden %}
+                    <tr>
+                        <td>
+                            <a style="text-decoration: #a51dff!important;" href="{% url 'destroy' key pk.id %}">Destroy</a>
+                        </td>
+                        <td>
+                            <a style="text-decoration: #a51dff" href="{% url 'update' key pk.id %}">Edit to Unhide</a>
+                        </td>
+                        <td>{{ forloop.counter }}</td>
+                        {% for field, value in instance.fields.items %}
+                            <td> {{ value | truncatewords:8}}</td>
+
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    </footer>
+{% endblock %}

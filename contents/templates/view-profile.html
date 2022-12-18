@@ -1,0 +1,41 @@
+{% extends 'navbar.html' %}
+{% load static %}
+
+{% block content %}
+    <footer class="footer static-bottom footer-dark footer-custom-class" data-midnight="white"><div class="container">
+        <div class="footer-wrapper mx-auto text-left">
+            <div class="row p-4">
+                <div class="col-12 col-md-5">
+                    <img class="img-fluid rounded" style="border-radius: 10%!important;" src="{{ staff.photo.url}}" alt="Susan J. Newsom">
+                </div>
+                <div class="col-12 col-md-7 mt-sm-3">
+                    <h3 id="teamUser6Title">{{ staff.name }}</h3>
+                    {% if edit_access == 1 %}
+                    <h6> <a href="{% url 'update-profile' staff.id %}"> Edit Profile</a></h6>
+                    {% endif %}
+                    <h4 >{{ staff.designation }}</h4>
+                    <div class="social-profile">
+                        <a target="_blank" href="{{ staff.linked_in }}" title="Linkedin" class="font-medium grey-accent2 mr-2"><i class="ti-linkedin"></i></a>
+                        <a target="_blank" href="{{ staff.github }}" title="Github" class="font-medium grey-accent2"><i class="ti-github"></i></a>
+                        <a target="_blank" style="margin-left:10px " href="mailto:{{ staff.email }}" title="Gmail" class="font-medium grey-accent2"><i class="ti-email"></i></a>
+                    </div>
+
+                    <div class="my-4">
+                        <h5>Research Interest: {{ staff.research_interest }}</h5>
+                    </div>
+                    <div class="my-4">
+                        <h5>About</h5>
+                        <p>{{ staff.about }}</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+    </footer>
+{% endblock %}

@@ -1,31 +1,23 @@
 {% extends 'navbar.html' %}
-{% block content %}
-    {% load static %}
-    <br>
-    <br>
-    <div class="login-form" >
-        <form method="post">
-            {% csrf_token %}
+{% load static %}
 
-            <h1>Login</h1>
-            <div class="form-group">
-{#                <input type="text" name="username" placeholder="E-mail Address or Username" >#}
-                {{ form.username }}
-                <span class="input-icon"><i class="fa fa-user-circle-o"></i></span>
-            </div>
-            <div class="form-group">
-                {{ form.password }}
-                <span class="input-icon"><i class="fa fa-lock"></i></span>
-            </div>
-            <button class="login-btn">Login</button>
-            <a class="reset-psw" href="#">Forgot your password?</a>
-            <div class="seperator"><b>or</b></div>
-            <p>Sign in with your social media account</p>
-            <!-- Social login buttons -->
-            <div class="social-icon">
-                <button type="button"><i class="fa fa-google"></i></button>
-                <button type="button"><i class="fa fa-facebook"></i></button>
-            </div>
-        </form>
+{% block content %}
+    <footer class="footer static-bottom footer-dark footer-custom-class" data-midnight="white"><div class="container">
+        <div class="footer-wrapper mx-auto text-center">
+            <div class="footer-title mb-5 animated" data-animation="fadeInUpShorter" data-animation-delay="0.2s">Log in</div>
+            <form  method="post" class="subscribe mb-3 animated" data-animation="fadeInUpShorter" data-animation-delay="0.3s" accept-charset="utf-8">
+                {% csrf_token %}
+                <input {{ form.username_field }} type="text" name="username" class="subscribe-text" placeholder="Email/Username">
+                <br>
+                <br>
+                <input {{ form.password_field }} type="password" name="password" class="subscribe-text" placeholder="Password">
+                <button type="submit" class="btn btn-gradient-orange btn-glow rounded-circle subscribe-btn"><i class="ti-angle-right"></i></button>
+                <br>
+                <br>
+                <a href="{% url 'password_reset' %}">Reset Password</a>
+            </form>
+
+        </div>
     </div>
+    </footer>
 {% endblock %}
