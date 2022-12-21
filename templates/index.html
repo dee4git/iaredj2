@@ -209,7 +209,7 @@
                                     {% for i in white_papers %}
                                         <tr>
                                             <td>
-                                                <a style="text-decoration: #a51dff!important;" href="{% url 'home'  %}">{{ i.tittle }}</a>
+                                                <a href="#" onclick='window.open("https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q={{ i.tittle }}&btnG=");return false;'>{{ i.tittle }}</a>
                                             </td>
                                             <td>
                                                 {{ i.authors }}

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout
+from django.http import FileResponse, Http404
 
 from contents.models import *
 
@@ -28,3 +29,24 @@ def browse_products(request, key):
         "solutions": solutions,
         "key": key,
     })
+
+
+def pdf_view(request, file):
+    try:
+        return FileResponse(open(file, 'rb'), content_type='application/pdf')
+    except FileNotFoundError:
+        raise Http404()
+
+
+def white_paper_view(request, pk):
+
+    paper = get_object_or_404(WhitePaper, pk=pk)
+    return redirect('home')
+
+    # paper = paper.pdf.url
+
+    # # pdf = pdf_view(request, paper.pdf.url)
+    # return render(request, 'white-paper-view.html', {
+    #     "paper": paper,
+    #     # "pdf": pdf,
+    # })
