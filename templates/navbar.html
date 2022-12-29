@@ -116,12 +116,12 @@
                 <span id="slide-line"></span>
                 <form class="form-inline mt-2 mt-md-0">
                     {% if user.is_authenticated %}
-                        <a style="margin: 0 10px;!important;" class="btn btn-sm btn-gradient-orange btn-round btn-glow my-2 my-sm-0 animated" data-animation="fadeInDown" data-animation-delay="1.8s" href="{% url 'logout' %}" >Log Out</a>
+                        <a style="margin: 0 10px;!important;" class="btn btn-sm btn-gradient-purple btn-round btn-glow my-2 my-sm-0 animated" data-animation="fadeInDown" data-animation-delay="1.8s" href="{% url 'logout' %}" >Log Out</a>
                         {% if user.is_superuser %}
-                            <a class="btn btn-sm btn-gradient-orange btn-round btn-glow my-2 my-sm-0 animated" data-animation="fadeInDown" data-animation-delay="1.8s" href="{% url 'control-center' 'Staffs' %}" >Control Center</a>
+                            <a class="btn btn-sm btn-gradient-blue btn-round btn-glow my-2 my-sm-0 animated" data-animation="fadeInDown" data-animation-delay="1.8s" href="{% url 'control-center' 'Staffs' %}" >Control Center</a>
                         {% endif %}
                     {% else %}
-                        <a class="btn btn-sm btn-gradient-orange btn-round btn-glow my-2 my-sm-0 animated" data-animation="fadeInDown" data-animation-delay="1.8s" href="{% url 'login' %}" >Log In</a>
+                        <a class="btn btn-sm btn-gradient-purple btn-round btn-glow my-2 my-sm-0 animated" data-animation="fadeInDown" data-animation-delay="1.8s" href="{% url 'login' %}" >Log In</a>
 
                     {% endif %}
                     {% if u_staff != 0 %}

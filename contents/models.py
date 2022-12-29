@@ -21,7 +21,7 @@ class Staff(models.Model):
     linked_in = models.URLField(max_length=1000, blank=True)
     github = models.URLField(max_length=999, blank=True)
     photo = models.ImageField(upload_to='media/team')
-    about = models.TextField(max_length=1000, null=True,blank=True)
+    about = models.TextField(max_length=1000, null=True, blank=True)
     hidden = models.BooleanField(default=False)
 
     def __str__(self):
