@@ -14,6 +14,7 @@ class StaffForm(forms.ModelForm):
             'phone',
             'linked_in',
             'github',
+            'google_scholar',
             'photo',
             'about',
             'hidden',

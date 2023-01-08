@@ -20,6 +20,7 @@ class Staff(models.Model):
     phone = models.CharField(max_length=11, unique=True, blank=True, null=True)
     linked_in = models.URLField(max_length=1000, blank=True)
     github = models.URLField(max_length=999, blank=True)
+    google_scholar = models.URLField(max_length=999, blank=True)
     photo = models.ImageField(upload_to='media/team')
     about = models.TextField(max_length=1000, null=True, blank=True)
     hidden = models.BooleanField(default=False)
